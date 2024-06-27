@@ -1,0 +1,17 @@
+services:
+  frontend:
+    image: omrs-fe:latest
+    environment:
+      SPA_PATH: /openmrs/spa
+      API_URL: /openmrs
+      SPA_CONFIG_URLS: /openmrs/spa/config-core_demo.json
+      SPA_DEFAULT_LOCALE:
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      timeout: 5s
+    networks:
+      - network1
+networks:
+  network1:
+    external: true
+    name: microservices
